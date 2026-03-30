@@ -32,6 +32,7 @@ export const BadgeDefinition: ComponentDefinition = {
       description: '숫자 뱃지 스타일 (원형)',
       category: 'Component',
     },
+    { name: 'children', type: { kind: 'text', default: 'Badge' }, label: 'Text', category: 'Component' },
   ],
   slots: [],
   defaultNode: () => ({

@@ -10,6 +10,8 @@ export const AccordionDefinition: ComponentDefinition = {
   icon: 'expand_more',
   props: [
     { name: 'type', type: { kind: 'select', options: ['single', 'multiple'], default: 'single' }, label: 'Type', category: 'Component' },
+    { name: 'collapsible', type: { kind: 'boolean', default: true }, label: 'Collapsible', category: 'Component' },
+    { name: 'disabled', type: { kind: 'boolean', default: false }, label: 'Disabled', category: 'Component' },
   ],
   slots: [],
   defaultNode: () => ({ type: 'Accordion', props: { type: 'single' }, children: [] }),

@@ -12,6 +12,8 @@ export const HeaderDefinition: ComponentDefinition = {
     { name: 'size', type: { kind: 'select', options: ['page', 'section'], default: 'section' }, label: 'Size', category: 'Component' },
     { name: 'heading', type: { kind: 'text', default: '페이지 제목' }, label: 'Heading', category: 'Component' },
     { name: 'description', type: { kind: 'text', default: '페이지 설명 텍스트입니다.' }, label: 'Description', category: 'Component' },
+    { name: 'showDescription', type: { kind: 'boolean', default: true }, label: 'Show Description', category: 'Composition' },
+    { name: 'trailingType', type: { kind: 'select', options: ['none', 'buttons', 'icon-button'], default: 'none' }, label: 'Trailing Type', category: 'Composition' },
   ],
   slots: [],
   defaultNode: () => ({

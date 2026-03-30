@@ -23,6 +23,9 @@ export const CardDefinition: ComponentDefinition = {
     { name: 'description', type: { kind: 'text', default: '카드 설명 텍스트입니다.' }, label: 'Description', category: 'Component' },
     { name: 'showFooter', type: { kind: 'boolean', default: false }, label: 'Show Footer', category: 'Component' },
     { name: 'footerText', type: { kind: 'text', default: '확인' }, label: 'Footer Button Text', category: 'Component', condition: { prop: 'showFooter' } },
+    { name: 'showImage', type: { kind: 'boolean', default: false }, label: 'Show Image', category: 'Composition' },
+    { name: 'showTrailing', type: { kind: 'boolean', default: false }, label: 'Show Trailing', category: 'Composition' },
+    { name: 'trailing', type: { kind: 'select', options: ['badge', 'button', 'menu'], default: 'badge' }, label: 'Trailing Type', category: 'Composition', condition: { prop: 'showTrailing', truthy: true } },
   ],
   slots: [],
   defaultNode: () => ({

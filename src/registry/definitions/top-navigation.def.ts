@@ -10,6 +10,10 @@ export const TopNavigationDefinition: ComponentDefinition = {
   icon: 'web',
   props: [
     { name: 'logoText', type: { kind: 'text', default: 'Logo' }, label: 'Logo Text', category: 'Component' },
+    { name: 'navItems', type: { kind: 'number', default: 3, min: 0, max: 6 }, label: 'Nav Items', category: 'Composition' },
+    { name: 'navPosition', type: { kind: 'select', options: ['left', 'right'], default: 'left' }, label: 'Nav Position', category: 'Component' },
+    { name: 'showSearch', type: { kind: 'boolean', default: false }, label: 'Show Search', category: 'Composition' },
+    { name: 'showActions', type: { kind: 'boolean', default: false }, label: 'Show Actions', category: 'Composition' },
   ],
   slots: [],
   defaultNode: () => ({ type: 'TopNavigation', props: { logoText: 'Logo' }, children: [] }),

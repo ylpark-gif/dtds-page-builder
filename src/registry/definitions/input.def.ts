@@ -49,6 +49,12 @@ export const InputDefinition: ComponentDefinition = {
       label: 'Clearable',
       category: 'Component',
     },
+    { name: 'leadingType', type: { kind: 'select', options: ['none', 'icon', 'text', 'dropdown'], default: 'none' }, label: 'Leading Type', category: 'Composition' },
+    { name: 'trailingType', type: { kind: 'select', options: ['none', 'button', 'kbd', 'text', 'spinner'], default: 'none' }, label: 'Trailing Type', category: 'Composition' },
+    { name: 'label', type: { kind: 'boolean', default: false }, label: 'Show Label', category: 'Composition' },
+    { name: 'showDescription', type: { kind: 'boolean', default: false }, label: 'Show Description', category: 'Composition' },
+    { name: 'showCounter', type: { kind: 'boolean', default: false }, label: 'Show Counter', category: 'Composition' },
+    { name: 'draggable', type: { kind: 'boolean', default: false }, label: 'Draggable', category: 'Component' },
   ],
   slots: [],
   defaultNode: () => ({

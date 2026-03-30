@@ -10,12 +10,12 @@ export const DialogDefinition: ComponentDefinition = {
   icon: 'open_in_new',
   props: [
     { name: 'variant', type: { kind: 'select', options: ['info', 'destructive'], default: 'info' }, label: 'Variant', category: 'Component' },
-    { name: 'size', type: { kind: 'select', options: ['sm', 'md', 'lg', 'xl', 'full'], default: 'md' }, label: 'Size', category: 'Component' },
+    { name: 'size', type: { kind: 'select', options: ['sm', 'md', 'lg', 'xl', 'full'], default: 'lg' }, label: 'Size', category: 'Component' },
     { name: 'title', type: { kind: 'text', default: '다이얼로그 제목' }, label: 'Title', category: 'Component' },
     { name: 'description', type: { kind: 'text', default: '다이얼로그 설명 텍스트입니다.' }, label: 'Description', category: 'Component' },
   ],
   slots: [],
-  defaultNode: () => ({ type: 'Dialog', props: { variant: 'info', size: 'md', title: '다이얼로그 제목', description: '다이얼로그 설명 텍스트입니다.' }, children: [] }),
+  defaultNode: () => ({ type: 'Dialog', props: { variant: 'info', size: 'lg', title: '다이얼로그 제목', description: '다이얼로그 설명 텍스트입니다.' }, children: [] }),
   importPath: 'doctalk-design-system',
   importNames: ['Dialog', 'DialogTrigger', 'DialogContent', 'DialogHeader', 'DialogTitle', 'DialogDescription', 'DialogFooter'],
   customRenderer: (node) => {

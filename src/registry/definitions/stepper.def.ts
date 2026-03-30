@@ -11,6 +11,8 @@ export const StepperDefinition: ComponentDefinition = {
   props: [
     { name: 'orientation', type: { kind: 'select', options: ['horizontal', 'vertical'], default: 'horizontal' }, label: 'Orientation', category: 'Component' },
     { name: 'size', type: { kind: 'select', options: ['sm', 'default', 'lg'], default: 'default' }, label: 'Size', category: 'Component' },
+    { name: 'activeStep', type: { kind: 'number', default: 2, min: 1, max: 5 }, label: 'Active Step', category: 'Component' },
+    { name: 'completedSteps', type: { kind: 'number', default: 1, min: 0, max: 5 }, label: 'Completed Steps', category: 'Component' },
   ],
   slots: [],
   defaultNode: () => ({ type: 'Stepper', props: { orientation: 'horizontal', size: 'default' }, children: [] }),

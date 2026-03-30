@@ -10,6 +10,7 @@ export const TabDefinition: ComponentDefinition = {
   icon: 'tab',
   props: [
     { name: 'size', type: { kind: 'select', options: ['sm', 'default', 'lg'], default: 'default' }, label: 'Size', category: 'Component' },
+    { name: 'bordered', type: { kind: 'boolean', default: false }, label: 'Bordered', category: 'Component' },
   ],
   slots: [],
   defaultNode: () => ({ type: 'Tab', props: { size: 'default' }, children: [] }),

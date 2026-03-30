@@ -13,6 +13,7 @@ export const SeparatorDefinition: ComponentDefinition = {
       label: 'Orientation',
       category: 'Component',
     },
+    { name: 'decorative', type: { kind: 'boolean', default: true }, label: 'Decorative', category: 'Component' },
   ],
   slots: [],
   defaultNode: () => ({

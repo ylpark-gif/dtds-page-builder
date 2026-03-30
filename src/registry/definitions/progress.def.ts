@@ -8,6 +8,7 @@ export const ProgressDefinition: ComponentDefinition = {
   icon: 'linear_scale',
   props: [
     { name: 'value', type: { kind: 'number', default: 60, min: 0, max: 100 }, label: 'Value (%)', category: 'Component' },
+    { name: 'width', type: { kind: 'select', options: ['sm', 'md', 'lg'], default: 'md' }, label: 'Width', category: 'Component' },
   ],
   slots: [],
   defaultNode: () => ({ type: 'Progress', props: { value: 60 }, children: [] }),

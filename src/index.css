@@ -1,4 +1,4 @@
-@import "../node_modules/doctalk-design-system/src/index.css";
+@import "doctalk-design-system/styles.css";
 
 /* Page Builder specific styles */
 .builder-canvas-node {

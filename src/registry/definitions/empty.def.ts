@@ -13,6 +13,8 @@ export const EmptyDefinition: ComponentDefinition = {
     { name: 'title', type: { kind: 'text', default: '데이터가 없습니다' }, label: 'Title', category: 'Component' },
     { name: 'description', type: { kind: 'text', default: '아직 등록된 항목이 없습니다.' }, label: 'Description', category: 'Component' },
     { name: 'iconName', type: { kind: 'text', default: 'inbox' }, label: 'Icon', category: 'Component' },
+    { name: 'showIcon', type: { kind: 'boolean', default: true }, label: 'Show Icon', category: 'Composition' },
+    { name: 'showAction', type: { kind: 'boolean', default: false }, label: 'Show Action', category: 'Composition' },
   ],
   slots: [],
   defaultNode: () => ({ type: 'Empty', props: { title: '데이터가 없습니다', description: '아직 등록된 항목이 없습니다.', iconName: 'inbox' }, children: [] }),

@@ -8,6 +8,7 @@ export const TooltipDefinition: ComponentDefinition = {
   icon: 'chat_bubble',
   props: [
     { name: 'content', type: { kind: 'text', default: '도움말 텍스트' }, label: 'Content', category: 'Component' },
+    { name: 'side', type: { kind: 'select', options: ['top', 'right', 'bottom', 'left'], default: 'top' }, label: 'Side', category: 'Component' },
   ],
   slots: [],
   defaultNode: () => ({ type: 'Tooltip', props: { content: '도움말 텍스트' }, textContent: '마우스를 올려보세요', children: [] }),

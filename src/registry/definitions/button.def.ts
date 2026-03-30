@@ -38,6 +38,8 @@ export const ButtonDefinition: ComponentDefinition = {
       label: 'Loading',
       category: 'Component',
     },
+    { name: 'children', type: { kind: 'text', default: '버튼' }, label: 'Label', category: 'Component' },
+    { name: 'iconOnly', type: { kind: 'boolean', default: false }, label: 'Icon Only', category: 'Component' },
   ],
   slots: [],
   defaultNode: () => ({

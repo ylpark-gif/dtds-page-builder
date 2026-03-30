@@ -11,6 +11,9 @@ export const RadioGroupDefinition: ComponentDefinition = {
   props: [
     { name: 'orientation', type: { kind: 'select', options: ['vertical', 'horizontal'], default: 'vertical' }, label: 'Orientation', category: 'Component' },
     { name: 'size', type: { kind: 'select', options: ['sm', 'default'], default: 'default' }, label: 'Size', category: 'Component' },
+    { name: 'disabled', type: { kind: 'boolean', default: false }, label: 'Disabled', category: 'Component' },
+    { name: 'label', type: { kind: 'text', default: '' }, label: 'Label', category: 'Composition' },
+    { name: 'showDescription', type: { kind: 'boolean', default: false }, label: 'Show Description', category: 'Composition' },
   ],
   slots: [],
   defaultNode: () => ({ type: 'RadioGroup', props: { orientation: 'vertical' }, children: [] }),

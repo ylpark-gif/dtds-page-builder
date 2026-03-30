@@ -11,9 +11,10 @@ export const AlertDefinition: ComponentDefinition = {
   props: [
     { name: 'variant', type: { kind: 'select', options: ['info', 'success', 'warning', 'destructive'], default: 'info' }, label: 'Variant', category: 'Component' },
     { name: 'inline', type: { kind: 'boolean', default: false }, label: 'Inline', category: 'Component' },
-    { name: 'removable', type: { kind: 'boolean', default: false }, label: 'Removable', category: 'Component' },
     { name: 'title', type: { kind: 'text', default: '알림 제목' }, label: 'Title', category: 'Component' },
     { name: 'description', type: { kind: 'text', default: '알림 내용을 입력하세요.' }, label: 'Description', category: 'Component' },
+    { name: 'showIcon', type: { kind: 'boolean', default: true }, label: 'Show Icon', category: 'Composition' },
+    { name: 'trailingType', type: { kind: 'select', options: ['none', 'close', 'button', 'link'], default: 'none' }, label: 'Trailing Type', category: 'Composition' },
   ],
   slots: [],
   defaultNode: () => ({

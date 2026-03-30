@@ -43,6 +43,7 @@ export const ChipDefinition: ComponentDefinition = {
       label: 'Disabled',
       category: 'Component',
     },
+    { name: 'loading', type: { kind: 'boolean', default: false }, label: 'Loading', category: 'Component' },
   ],
   slots: [],
   defaultNode: () => ({

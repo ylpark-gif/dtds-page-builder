@@ -9,6 +9,9 @@ export const SwitchDefinition: ComponentDefinition = {
   props: [
     { name: 'size', type: { kind: 'select', options: ['sm', 'default'], default: 'default' }, label: 'Size', category: 'Component' },
     { name: 'disabled', type: { kind: 'boolean', default: false }, label: 'Disabled', category: 'Component' },
+    { name: 'checked', type: { kind: 'boolean', default: false }, label: 'Checked', category: 'Component' },
+    { name: 'label', type: { kind: 'text', default: '' }, label: 'Label', category: 'Composition' },
+    { name: 'showDescription', type: { kind: 'boolean', default: false }, label: 'Show Description', category: 'Composition' },
   ],
   slots: [],
   defaultNode: () => ({ type: 'Switch', props: { size: 'default' }, children: [] }),

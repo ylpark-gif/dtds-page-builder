@@ -8,7 +8,11 @@ export const PaginationDefinition: ComponentDefinition = {
   category: 'Navigation',
   description: '페이지 간 이동을 위한 페이지네이션',
   icon: 'more_horiz',
-  props: [],
+  props: [
+    { name: 'totalPages', type: { kind: 'number', default: 3, min: 1, max: 20 }, label: 'Total Pages', category: 'Component' },
+    { name: 'currentPage', type: { kind: 'number', default: 1, min: 1, max: 20 }, label: 'Current Page', category: 'Component' },
+    { name: 'showFirstLast', type: { kind: 'boolean', default: false }, label: 'Show First/Last', category: 'Component' },
+  ],
   slots: [],
   defaultNode: () => ({ type: 'Pagination', props: {}, children: [] }),
   importPath: 'doctalk-design-system',

@@ -1,4 +1,21 @@
 import React from 'react'
+import { Calendar } from 'doctalk-design-system'
+import {
+  Table,
+  TableHeader,
+  TableBody,
+  TableRow,
+  TableHead,
+  TableCell,
+} from 'doctalk-design-system'
+import {
+  Field,
+  FieldLabel,
+  FieldDescription,
+  FieldError,
+  FieldContent,
+} from 'doctalk-design-system'
+import { Input } from 'doctalk-design-system'
 import type { ComponentDefinition } from '../types'
 
 // Helper: creates a preview placeholder for complex components
@@ -98,11 +115,13 @@ export const FieldDefinition: ComponentDefinition = {
   importNames: ['Field', 'FieldLabel', 'FieldDescription', 'FieldError', 'FieldContent', 'Input'],
   customRenderer: (node) => {
     const { label, description, error, placeholder } = node.props as Record<string, any>
-    return React.createElement('div', { className: 'space-y-1.5' },
-      label && React.createElement('label', { className: 'text-sm font-medium' }, label),
-      React.createElement('input', { className: 'w-full h-11 px-3 rounded-xl border border-input bg-white text-sm placeholder:text-muted-foreground outline-none', placeholder }),
-      description && React.createElement('p', { className: 'text-xs text-muted-foreground' }, description),
-      error && React.createElement('p', { className: 'text-xs text-destructive' }, error)
+    return React.createElement(Field, null,
+      React.createElement(FieldLabel, null, label || '라벨'),
+      React.createElement(FieldContent, null,
+        React.createElement(Input, { placeholder: placeholder || '입력하세요' }),
+        description && React.createElement(FieldDescription, null, description),
+        error && React.createElement(FieldError, null, error),
+      )
     )
   },
 }
@@ -152,7 +171,7 @@ export const CalendarDefinition: ComponentDefinition = {
   defaultNode: () => ({ type: 'Calendar', props: {}, children: [] }),
   importPath: 'doctalk-design-system',
   importNames: ['Calendar'],
-  customRenderer: () => previewCard('Calendar', 'calendar_month', '날짜 캘린더'),
+  customRenderer: () => React.createElement(Calendar, { mode: 'single' }),
 }
 
 export const DataTableDefinition: ComponentDefinition = {
@@ -183,7 +202,27 @@ export const TableDefinition: ComponentDefinition = {
   defaultNode: () => ({ type: 'Table', props: {}, children: [] }),
   importPath: 'doctalk-design-system',
   importNames: ['Table', 'TableHeader', 'TableBody', 'TableRow', 'TableHead', 'TableCell'],
-  customRenderer: () => previewCard('Table', 'grid_on', '기본 테이블'),
+  customRenderer: () => React.createElement(Table, null,
+    React.createElement(TableHeader, null,
+      React.createElement(TableRow, null,
+        React.createElement(TableHead, null, '이름'),
+        React.createElement(TableHead, null, '역할'),
+        React.createElement(TableHead, null, '상태'),
+      )
+    ),
+    React.createElement(TableBody, null,
+      React.createElement(TableRow, null,
+        React.createElement(TableCell, null, '홍길동'),
+        React.createElement(TableCell, null, '관리자'),
+        React.createElement(TableCell, null, '활성'),
+      ),
+      React.createElement(TableRow, null,
+        React.createElement(TableCell, null, '김철수'),
+        React.createElement(TableCell, null, '사용자'),
+        React.createElement(TableCell, null, '비활성'),
+      ),
+    )
+  ),
 }
 
 export const SidebarDefinition: ComponentDefinition = {

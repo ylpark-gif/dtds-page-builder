@@ -10,6 +10,8 @@ export const ToggleDefinition: ComponentDefinition = {
     { name: 'variant', type: { kind: 'select', options: ['default', 'outline'], default: 'default' }, label: 'Variant', category: 'Component' },
     { name: 'size', type: { kind: 'select', options: ['sm', 'default', 'lg'], default: 'default' }, label: 'Size', category: 'Component' },
     { name: 'disabled', type: { kind: 'boolean', default: false }, label: 'Disabled', category: 'Component' },
+    { name: 'children', type: { kind: 'text', default: 'Toggle' }, label: 'Label', category: 'Component' },
+    { name: 'showIcon', type: { kind: 'boolean', default: false }, label: 'Show Icon', category: 'Composition' },
   ],
   slots: [],
   defaultNode: () => ({ type: 'Toggle', props: { variant: 'default', size: 'default' }, textContent: 'Toggle', children: [] }),
