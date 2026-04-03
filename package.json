@@ -11,7 +11,7 @@
   "dependencies": {
     "react": "^19.2.0",
     "react-dom": "^19.2.0",
-    "doctalk-design-system": "file:../0317/apps/react",
+    "doctalk-design-system": "file:../design-system/apps/react",
     "@dnd-kit/core": "^6.3.1",
     "@dnd-kit/sortable": "^10.0.0",
     "@dnd-kit/utilities": "^3.2.2",
