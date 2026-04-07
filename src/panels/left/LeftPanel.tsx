@@ -3,9 +3,12 @@ import { PageTree } from './PageTree'
 import { ComponentLibrary } from './ComponentLibrary'
 import { PlatformSelector } from './PlatformSelector'
 
-export function LeftPanel() {
+export function LeftPanel({ width }: { width?: number }) {
   return (
-    <div className="w-[260px] min-w-[240px] border-r border-border bg-background flex flex-col h-full">
+    <div
+      className="min-w-[160px] border-r border-border bg-background flex flex-col h-full"
+      style={width !== undefined ? { width } : { width: 260 }}
+    >
       <PlatformSelector />
       <PageTree />
       <div className="px-3 py-2 border-b border-border">
