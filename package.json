@@ -9,18 +9,19 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "react": "^19.2.0",
-    "react-dom": "^19.2.0",
-    "doctalk-design-system": "file:../design-system/apps/react",
+    "@atlaskit/ads-mcp": "^0.19.1",
     "@dnd-kit/core": "^6.3.1",
     "@dnd-kit/sortable": "^10.0.0",
     "@dnd-kit/utilities": "^3.2.2",
-    "zustand": "^5.0.5",
-    "immer": "^10.1.1",
-    "nanoid": "^5.1.5",
     "clsx": "^2.1.1",
+    "doctalk-design-system": "file:../design-system/apps/react",
+    "immer": "^10.1.1",
+    "lucide-react": "^0.577.0",
+    "nanoid": "^5.1.5",
+    "react": "^19.2.0",
+    "react-dom": "^19.2.0",
     "tailwind-merge": "^3.4.0",
-    "lucide-react": "^0.577.0"
+    "zustand": "^5.0.5"
   },
   "devDependencies": {
     "@tailwindcss/vite": "^4.0.0",

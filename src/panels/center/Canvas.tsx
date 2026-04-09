@@ -67,16 +67,6 @@ export function Canvas() {
     ? getPreviewForRoute(platformPage.route)
     : null
 
-  const activePlatformId = usePlatformStore((s) => s.activePlatformId)
-  const platforms = usePlatformStore((s) => s.platforms)
-  const activePlatform = platforms.find((p) => p.id === activePlatformId)
-
-  // Find the route for current page by matching name
-  const platformPage = activePlatform?.pages.find((pp) => pp.name === page.name)
-  const PreviewComponent = platformPage
-    ? getPreviewForRoute(platformPage.route)
-    : null
-
   const { setNodeRef, isOver } = useDroppable({
     id: `canvas-root-${page.root.id}`,
     data: { targetNodeId: page.root.id },
