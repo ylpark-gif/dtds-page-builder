@@ -6,5 +6,6 @@ export function registerIframe(el: HTMLIFrameElement | null) {
 }
 
 export function sendToIframe(msg: object) {
+  console.log('[iframe-bridge] sendToIframe:', (msg as any).type, 'iframe exists:', !!_iframe, 'contentWindow:', !!_iframe?.contentWindow)
   _iframe?.contentWindow?.postMessage(msg, '*')
 }

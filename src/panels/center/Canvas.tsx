@@ -8,6 +8,7 @@ import { usePlatformStore } from '@/store/platform-store'
 import { getPreviewForRoute } from '@/platforms/previews'
 import { CanvasNode } from './CanvasNode'
 import { registerIframe, sendToIframe } from '@/lib/iframe-bridge'
+import { useMigrationStore } from '@/store/migration-store'
 
 const DOCTALK_DEV_URL = 'http://localhost:3000'
 const IFRAME_NATIVE_WIDTH = 1920
@@ -57,6 +58,10 @@ export function Canvas() {
   const setSelectedIframeElement = useUIStore((s) => s.setSelectedIframeElement)
   const iframeEditMode = useUIStore((s) => s.iframeEditMode)
   const setIframeEditMode = useUIStore((s) => s.setIframeEditMode)
+
+  const migrationStep = useMigrationStore((s) => s.step)
+  const migrationScope = useMigrationStore((s) => s.scope)
+  const setDragSelection = useMigrationStore((s) => s.setDragSelection)
 
   const activePlatformId = usePlatformStore((s) => s.activePlatformId)
   const platforms = usePlatformStore((s) => s.platforms)
@@ -117,6 +122,24 @@ export function Canvas() {
     }
   }, [previewMode, setSelectedIframeElement, setIframeEditMode])
 
+  // ─── Migration overlay drag state ────────────────────────────
+  const [dragState, setDragState] = React.useState<{
+    active: boolean
+    startX: number
+    startY: number
+    currentX: number
+    currentY: number
+  } | null>(null)
+
+  // Send message when step transitions to 'analyzing'
+  React.useEffect(() => {
+    if (migrationStep !== 'analyzing') return
+    if (migrationScope === 'full-page') {
+      sendToIframe({ type: 'BUILDER_MIGRATION_ANALYZE_PAGE' })
+    }
+    // area-select sends on mouseup, component-select handled by iframe BUILDER_SELECT
+  }, [migrationStep, migrationScope])
+
   const isEmpty = page.root.children.length === 0
 
   // 16:9 비율 기준 최소 높이 계산
@@ -174,6 +197,89 @@ export function Canvas() {
               }}
               title="original-preview"
             />
+            {/* Migration overlay – area-select: drag to select; component-select: pass through */}
+            {migrationStep === 'scope-select' && migrationScope === 'area-select' && (
+              <div
+                style={{
+                  position: 'absolute',
+                  inset: 0,
+                  pointerEvents: 'auto',
+                  cursor: 'crosshair',
+                }}
+                onMouseDown={(e) => {
+                  const rect = e.currentTarget.getBoundingClientRect()
+                  setDragState({
+                    active: true,
+                    startX: e.clientX - rect.left,
+                    startY: e.clientY - rect.top,
+                    currentX: e.clientX - rect.left,
+                    currentY: e.clientY - rect.top,
+                  })
+                  e.preventDefault()
+                }}
+                onMouseMove={(e) => {
+                  if (!dragState?.active) return
+                  const rect = e.currentTarget.getBoundingClientRect()
+                  setDragState((prev) =>
+                    prev
+                      ? { ...prev, currentX: e.clientX - rect.left, currentY: e.clientY - rect.top }
+                      : prev
+                  )
+                }}
+                onMouseUp={(e) => {
+                  if (!dragState?.active) return
+                  const rect = e.currentTarget.getBoundingClientRect()
+                  const endX = e.clientX - rect.left
+                  const endY = e.clientY - rect.top
+
+                  // Convert overlay coordinates to iframe native coordinates
+                  const toNative = (v: number) => Math.round(v / scale)
+                  const x = toNative(Math.min(dragState.startX, endX))
+                  const y = toNative(Math.min(dragState.startY, endY))
+                  const width = toNative(Math.abs(endX - dragState.startX))
+                  const height = toNative(Math.abs(endY - dragState.startY))
+
+                  setDragSelection({
+                    startX: toNative(dragState.startX),
+                    startY: toNative(dragState.startY),
+                    endX: toNative(endX),
+                    endY: toNative(endY),
+                  })
+
+                  sendToIframe({
+                    type: 'BUILDER_MIGRATION_ANALYZE_AREA',
+                    data: { rect: { top: y, left: x, width, height } },
+                  })
+
+                  setDragState(null)
+                }}
+                onMouseLeave={() => {
+                  if (dragState?.active) setDragState(null)
+                }}
+              >
+                {/* Selection rectangle */}
+                {dragState?.active && (() => {
+                  const x = Math.min(dragState.startX, dragState.currentX)
+                  const y = Math.min(dragState.startY, dragState.currentY)
+                  const w = Math.abs(dragState.currentX - dragState.startX)
+                  const h = Math.abs(dragState.currentY - dragState.startY)
+                  return (
+                    <div
+                      style={{
+                        position: 'absolute',
+                        left: x,
+                        top: y,
+                        width: w,
+                        height: h,
+                        border: '2px dashed #6366f1',
+                        background: 'rgba(99, 102, 241, 0.1)',
+                        pointerEvents: 'none',
+                      }}
+                    />
+                  )
+                })()}
+              </div>
+            )}
           </div>
         </div>
       </div>

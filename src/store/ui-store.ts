@@ -19,6 +19,7 @@ interface UIState {
   previewMode: 'original' | 'ds-applied'
   selectedIframeElement: IframeElementInfo | null
   iframeEditMode: boolean
+  rightPanelTab: 'properties' | 'migration'
   toggleLeftPanel: () => void
   toggleRightPanel: () => void
   setViewportWidth: (w: number) => void
@@ -26,6 +27,7 @@ interface UIState {
   setPreviewMode: (mode: 'original' | 'ds-applied') => void
   setSelectedIframeElement: (el: IframeElementInfo | null) => void
   setIframeEditMode: (on: boolean) => void
+  setRightPanelTab: (tab: 'properties' | 'migration') => void
 }
 
 export const useUIStore = create<UIState>()((set) => ({
@@ -36,6 +38,7 @@ export const useUIStore = create<UIState>()((set) => ({
   previewMode: 'ds-applied',
   selectedIframeElement: null,
   iframeEditMode: false,
+  rightPanelTab: 'properties',
   toggleLeftPanel: () => set((s) => ({ leftPanelOpen: !s.leftPanelOpen })),
   toggleRightPanel: () => set((s) => ({ rightPanelOpen: !s.rightPanelOpen })),
   setViewportWidth: (w) => set({ viewportWidth: w }),
@@ -43,4 +46,5 @@ export const useUIStore = create<UIState>()((set) => ({
   setPreviewMode: (mode) => set({ previewMode: mode }),
   setSelectedIframeElement: (el) => set({ selectedIframeElement: el }),
   setIframeEditMode: (on) => set({ iframeEditMode: on }),
+  setRightPanelTab: (tab) => set({ rightPanelTab: tab }),
 }))
